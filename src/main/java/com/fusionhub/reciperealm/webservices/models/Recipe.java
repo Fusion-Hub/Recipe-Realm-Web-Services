@@ -24,7 +24,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-     @OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
+     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeDetails> details = new ArrayList<>();
 
 }

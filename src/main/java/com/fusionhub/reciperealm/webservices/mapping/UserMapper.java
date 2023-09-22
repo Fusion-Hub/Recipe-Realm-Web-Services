@@ -16,4 +16,5 @@ public class UserMapper {
     public User convertToUser(RegistrationRequest request) {
         return modelMapper.map(request, User.class);
     }
+
 }
