@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fusionhub.reciperealm.webservices.dto.RegistrationRequest;
+import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
 import com.fusionhub.reciperealm.webservices.models.User;
 
 @Component
@@ -13,7 +13,7 @@ public class UserMapper {
     private ModelMapper modelMapper;
 
 
-    public User convertToUser(RegistrationRequest request) {
+    public User convertToUser(RegistrationRequestDto request) {
         return modelMapper.map(request, User.class);
     }
 

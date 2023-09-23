@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequest;
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponse;
-import com.fusionhub.reciperealm.webservices.dto.RegistrationRequest;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequestDto;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponseDto;
+import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
 import com.fusionhub.reciperealm.webservices.services.AuthenticationService;
 import com.fusionhub.reciperealm.webservices.validation.UserValidation;
 
@@ -34,17 +34,17 @@ public class AuthenticationController {
 
     @Transactional
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<AuthenticationResponseDto> register(@RequestBody RegistrationRequestDto request) {
         userValidation.validateUser(request);
-        AuthenticationResponse registeredUser = authenticationService.register(request);
-        return new ResponseEntity<AuthenticationResponse>(registeredUser, HttpStatus.CREATED);
+        AuthenticationResponseDto registeredUser = authenticationService.register(request);
+        return new ResponseEntity<AuthenticationResponseDto>(registeredUser, HttpStatus.CREATED);
     }
 
     @Transactional
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
-        AuthenticationResponse loggedStudent = authenticationService.login(request);
-        return new ResponseEntity<AuthenticationResponse>(loggedStudent, HttpStatus.OK);
+    public ResponseEntity<AuthenticationResponseDto> login(@RequestBody AuthenticationRequestDto request) {
+        AuthenticationResponseDto loggedStudent = authenticationService.login(request);
+        return new ResponseEntity<AuthenticationResponseDto>(loggedStudent, HttpStatus.OK);
     }
 
     @PostMapping("/refresh-token")

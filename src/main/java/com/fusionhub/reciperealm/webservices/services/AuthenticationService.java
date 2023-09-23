@@ -1,8 +1,8 @@
 package com.fusionhub.reciperealm.webservices.services;
 
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequest;
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponse;
-import com.fusionhub.reciperealm.webservices.dto.RegistrationRequest;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequestDto;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponseDto;
+import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
 
 import java.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public interface AuthenticationService {
 
-    public abstract AuthenticationResponse register(RegistrationRequest request);
+    public abstract AuthenticationResponseDto register(RegistrationRequestDto request);
 
-    public abstract AuthenticationResponse login(AuthenticationRequest authenticationRequest);
+    public abstract AuthenticationResponseDto login(AuthenticationRequestDto authenticationRequest);
 
     public void refreshToken(
             HttpServletRequest request,

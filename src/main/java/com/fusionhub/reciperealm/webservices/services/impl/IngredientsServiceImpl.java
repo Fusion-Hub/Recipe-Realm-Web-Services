@@ -12,7 +12,7 @@ import com.fusionhub.reciperealm.webservices.services.IngredientsService;
 import com.fusionhub.reciperealm.webservices.validation.IngredientsValidation;
 
 @Service
-public class IngredientsServiceImp implements IngredientsService{
+public class IngredientsServiceImpl implements IngredientsService{
 
     @Autowired
     private IngredientsRepository ingredientsRepository;
