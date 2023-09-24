@@ -7,8 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(uniqueConstraints={
-    @UniqueConstraint(columnNames = {"recipe_id", "user_id"})
-})
 public class RecipeNote {
 
     @Id
@@ -31,7 +27,7 @@ public class RecipeNote {
     @Lob
     private String note;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
