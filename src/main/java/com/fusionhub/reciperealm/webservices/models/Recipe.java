@@ -48,4 +48,8 @@ public class Recipe {
      @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeDetails> details;
 
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RecipeNote> notes;
+
+    
 }

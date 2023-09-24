@@ -20,4 +20,5 @@ public class RecipeDto {
     private String imageLink;
     private UserDto user;
     private List<RecipeDetailsDto> details; 
+    private RecipeNoteDto note;
 }
