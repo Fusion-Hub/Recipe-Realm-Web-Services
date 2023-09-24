@@ -21,4 +21,5 @@ public class RecipeDto {
     private UserDto user;
     private List<RecipeDetailsDto> details; 
     private RecipeNoteDto note;
+    private List<RecipeRatingDto> ratings;
 }
