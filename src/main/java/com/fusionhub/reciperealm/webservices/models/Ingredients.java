@@ -26,4 +26,7 @@ public class Ingredients {
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
     private List<ShoppingList> shoppingLists;
+
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    private List<UserIngredients> userIngredients;
 }

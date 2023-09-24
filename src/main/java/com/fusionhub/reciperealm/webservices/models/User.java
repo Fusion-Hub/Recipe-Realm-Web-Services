@@ -60,6 +60,9 @@ public class User implements UserDetails{
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<RecipeRating> ratings;
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<UserIngredients> userIngredients;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority(role.name()));
