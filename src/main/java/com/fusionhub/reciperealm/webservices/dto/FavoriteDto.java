@@ -6,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class AuthenticationRequest {
-    private String email;
-    private String password;
+public class FavoriteDto {
+    private Long id;
+    private Long recipeId;
 }

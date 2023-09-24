@@ -3,7 +3,7 @@ package com.fusionhub.reciperealm.webservices.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fusionhub.reciperealm.webservices.dto.RegistrationRequest;
+import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
 import com.fusionhub.reciperealm.webservices.exception.ValidationException;
 import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.UserRepository;
@@ -14,7 +14,7 @@ public class UserValidation {
     @Autowired
     private UserRepository userRepository;
     
-    public void validateUser(RegistrationRequest request) {
+    public void validateUser(RegistrationRequestDto request) {
          if (request.getFirstName() == null || request.getFirstName().isEmpty()) {
             throw new ValidationException("Name is required");
         }
