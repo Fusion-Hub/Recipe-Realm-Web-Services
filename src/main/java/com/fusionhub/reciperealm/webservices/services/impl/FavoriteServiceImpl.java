@@ -45,7 +45,7 @@ public class FavoriteServiceImpl implements FavoriteService{
 
     @Override
     public void addFavoriteForUser(Long userId, Long recipeId) {
-  
+        //TODO: Crear user service para no hacer llamada y validaciones aca. 
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found!"));
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new RuntimeException("Recipe not found!"));
         
