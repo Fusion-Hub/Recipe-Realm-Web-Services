@@ -14,7 +14,7 @@ import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
 
 @RestController
-@RequestMapping("/api/recipes")
+@RequestMapping("/api/v1/recipes")
 public class RecipeController {
 
     @Autowired

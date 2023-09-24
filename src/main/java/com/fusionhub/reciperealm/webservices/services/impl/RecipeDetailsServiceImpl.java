@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fusionhub.reciperealm.webservices.dto.RecipeDetailsDto;
 import com.fusionhub.reciperealm.webservices.mapping.RecipeDetailsMapper;
 import com.fusionhub.reciperealm.webservices.repository.RecipeDetailsRepository;
 import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 
+@Service
 public class RecipeDetailsServiceImpl implements RecipeDetailsService{
 
     @Autowired

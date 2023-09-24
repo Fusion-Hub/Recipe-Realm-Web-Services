@@ -17,6 +17,7 @@ public class RecipeDto {
     private String description;
     private List<String> steps;
     private String videoLink;
+    private String imageLink;
     private UserDto user;
     private List<RecipeDetailsDto> details; 
 }
