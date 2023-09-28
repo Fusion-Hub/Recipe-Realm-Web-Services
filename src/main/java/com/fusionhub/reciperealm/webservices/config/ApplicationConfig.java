@@ -55,7 +55,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://recipe-realm-web-services-production.up.railway.app/")
+                .allowedOrigins("https://recipe-realm-web-services-production.up.railway.app/", "https://recipe-realm-web-services-production.up.railway.app/swagger-ui.html")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true);
     }
