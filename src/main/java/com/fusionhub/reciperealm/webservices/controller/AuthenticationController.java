@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/v1/account")
-@CrossOrigin(origins = "https://recipe-realm-web-services-production.up.railway.app")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthenticationController {
     
     @Autowired
