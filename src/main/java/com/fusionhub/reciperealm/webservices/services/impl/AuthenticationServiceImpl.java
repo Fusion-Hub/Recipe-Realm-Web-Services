@@ -15,9 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequest;
-import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponse;
-import com.fusionhub.reciperealm.webservices.dto.RegistrationRequest;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationRequestDto;
+import com.fusionhub.reciperealm.webservices.dto.AuthenticationResponseDto;
+import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
 import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
 import com.fusionhub.reciperealm.webservices.models.Role;
 import com.fusionhub.reciperealm.webservices.models.Token;
@@ -45,7 +45,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private  UserMapper userMapper;
 
     @Override
-    public AuthenticationResponse register(RegistrationRequest request) {
+    public AuthenticationResponseDto register(RegistrationRequestDto request) {
         User user = userMapper.convertToUser(request);
         user.setRole(Role.User);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -54,13 +54,13 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         var jwtToken = jwtService.generateToken(savedUser.getId(), savedUser);
         var refreshToken = jwtService.generateRefreshToken(savedUser);
         saveUserToken(savedUser, jwtToken);
-        return AuthenticationResponse.builder()
+        return AuthenticationResponseDto.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
     }
 
-    public AuthenticationResponse login(AuthenticationRequest request) {
+    public AuthenticationResponseDto login(AuthenticationRequestDto request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -70,7 +70,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        return AuthenticationResponse.builder()
+        return AuthenticationResponseDto.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
@@ -120,7 +120,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 var accessToken = jwtService.generateToken(user.getId(), userDetails);
                 revokeAllUserTokens(user);
                 saveUserToken(user, accessToken);
-                var authResponse = AuthenticationResponse.builder()
+                var authResponse = AuthenticationResponseDto.builder()
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();
