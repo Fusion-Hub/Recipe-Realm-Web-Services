@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fusionhub.reciperealm.webservices.dto.RegistrationRequestDto;
+import com.fusionhub.reciperealm.webservices.dto.UserDto;
 import com.fusionhub.reciperealm.webservices.models.User;
 
 @Component
@@ -15,6 +16,10 @@ public class UserMapper {
 
     public User convertToUser(RegistrationRequestDto request) {
         return modelMapper.map(request, User.class);
+    }
+
+    public UserDto convertToUserDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 
 }

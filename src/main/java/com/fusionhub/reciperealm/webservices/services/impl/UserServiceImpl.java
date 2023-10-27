@@ -3,6 +3,8 @@ package com.fusionhub.reciperealm.webservices.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fusionhub.reciperealm.webservices.dto.UserDto;
+import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
 import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.UserRepository;
 import com.fusionhub.reciperealm.webservices.services.JwtService;
@@ -17,9 +19,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JwtService jwtService;
 
+    @Autowired
+    private UserMapper userMapper;  
+
     @Override
-    public User getLoggedInUserProfile(String token) {
+    public UserDto getLoggedInUserProfile(String token) {
         String userEmail = jwtService.extractUsername(token);
-        return userRepository.findByEmail(userEmail);
+        User user = userRepository.findByEmail(userEmail);
+        return userMapper.convertToUserDto(user); 
     }
 }
