@@ -1,7 +1,7 @@
 package com.fusionhub.reciperealm.webservices.services;
 
-import com.fusionhub.reciperealm.webservices.models.User;
+import com.fusionhub.reciperealm.webservices.dto.UserDto;
 
 public interface UserService {
-    public User getLoggedInUserProfile(String token);
+    public UserDto getLoggedInUserProfile(String token);
 }
