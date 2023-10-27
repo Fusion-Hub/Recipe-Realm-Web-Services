@@ -46,4 +46,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return userMapper.convertToUserDto(user);
     }
+
+    @Override
+    public UserDto updateUserProfile(String token, UserDto userDto) {
+        String userEmail = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(userEmail);
+
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setLocation(userDto.getLocation());
+        user.setBio(userDto.getBio());
+        user.setBirthDate(userDto.getBirthDate());
+
+        userRepository.save(user);
+        return userMapper.convertToUserDto(user);
+        
+    }
 }

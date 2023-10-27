@@ -9,4 +9,6 @@ public interface UserService {
     public abstract UserDto uploadProfileImage(String token, byte[] imageData);
 
     public abstract UserDto uploadBannerImage(String token, byte[] imageData);
+
+    public abstract UserDto updateUserProfile(String token, UserDto userDto);
 }
