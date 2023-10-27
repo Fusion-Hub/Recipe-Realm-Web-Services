@@ -25,7 +25,7 @@ public class UserController {
         return userService.getLoggedInUserProfile(token.substring(7));
     }
 
-    @PostMapping("/upload-image")
+    @PostMapping("/upload-profile-image")
     public ResponseEntity<UserDto> uploadProfileImage(
         @RequestHeader(value="Authorization") String token,
         @RequestParam("image") MultipartFile imageFile
@@ -36,6 +36,21 @@ public class UserController {
 
         byte[] imageData = imageFile.getBytes();
         UserDto updatedUser = userService.uploadProfileImage(token.substring(7), imageData);
+
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    @PostMapping("/upload-banner-image")
+    public ResponseEntity<UserDto> uploadBannerImage(
+        @RequestHeader(value="Authorization") String token,
+        @RequestParam("image") MultipartFile imageFile
+    ) throws Exception {
+        if (imageFile.isEmpty()) {
+            throw new Exception("The image file is empty");
+        }
+
+        byte[] imageData = imageFile.getBytes();
+        UserDto updatedUser = userService.uploadBannerImage(token.substring(7), imageData);
 
         return ResponseEntity.ok(updatedUser);
     }

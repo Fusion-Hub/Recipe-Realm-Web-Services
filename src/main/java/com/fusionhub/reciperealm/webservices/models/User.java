@@ -1,5 +1,6 @@
 package com.fusionhub.reciperealm.webservices.models;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,9 +40,18 @@ public class User implements UserDetails{
   private String firstName;
   private String lastName;
 
+  private String location;
+  @Column(length = 200)
+  private String bio;
+  private LocalDate birthDate;
+
   @Lob
-        @Column(length = 1048576)
-        private byte[] profileImage;
+  @Column(length = 1048576)
+  private byte[] profileImage;
+
+  @Lob
+  @Column(length = 1048576)
+  private byte[] bannerImage;
 
   @Column(unique = true)
   private String email;

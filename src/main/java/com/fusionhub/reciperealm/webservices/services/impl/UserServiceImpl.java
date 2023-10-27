@@ -37,4 +37,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return userMapper.convertToUserDto(user);
     }
+
+    @Override
+    public UserDto uploadBannerImage(String token, byte[] imageData) {
+        String userEmail = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(userEmail);
+        user.setBannerImage(imageData);
+        userRepository.save(user);
+        return userMapper.convertToUserDto(user);
+    }
 }
