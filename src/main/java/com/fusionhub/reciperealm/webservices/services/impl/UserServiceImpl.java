@@ -52,14 +52,17 @@ public class UserServiceImpl implements UserService {
         String userEmail = jwtService.extractUsername(token);
         User user = userRepository.findByEmail(userEmail);
 
+
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setLocation(userDto.getLocation());
         user.setBio(userDto.getBio());
         user.setBirthDate(userDto.getBirthDate());
+        user.setBannerImage(userDto.getBannerImage());
+        user.setProfileImage(userDto.getProfileImage());
 
         userRepository.save(user);
         return userMapper.convertToUserDto(user);
-        
+
     }
 }
