@@ -28,4 +28,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(userEmail);
         return userMapper.convertToUserDto(user); 
     }
+
+    @Override
+    public UserDto uploadProfileImage(String token, byte[] imageData) {
+        String userEmail = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(userEmail);
+        user.setProfileImage(imageData);
+        userRepository.save(user);
+        return userMapper.convertToUserDto(user);
+    }
 }
