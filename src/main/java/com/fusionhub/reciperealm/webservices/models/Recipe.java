@@ -33,6 +33,8 @@ public class Recipe {
 
     private String description; 
 
+    private String cookTime;
+
     @ElementCollection
     private List<String> steps;
 

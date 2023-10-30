@@ -15,6 +15,7 @@ public class RecipeDto {
     private Long id;
     private String name;
     private String description;
+    private String cookTime;
     private List<String> steps;
     private String videoLink;
     private String imageLink;
