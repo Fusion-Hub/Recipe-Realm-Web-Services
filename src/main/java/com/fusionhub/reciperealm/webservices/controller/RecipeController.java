@@ -21,6 +21,7 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @PostMapping
+    @Transactional
     public ResponseEntity<CreateRecipeDto> save(@RequestBody CreateRecipeDto recipeDto,
             @RequestHeader("Authorization") String token) {
         token = token.replace("Bearer ", "");
