@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class RecipeDetailsDto {
     private Long recipeId;
     private IngredientsDto ingredients;
-    private Double quantity;
+    private String quantity;
     private Unit unit;
 }

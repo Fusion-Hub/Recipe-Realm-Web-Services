@@ -34,7 +34,7 @@ public class RecipeDetails {
     private Ingredients ingredients;
 
     @Column(nullable = false)
-    private Double quantity;
+    private String quantity;
 
     @Enumerated(EnumType.STRING)
     private Unit unit;
