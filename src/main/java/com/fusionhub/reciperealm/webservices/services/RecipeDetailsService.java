@@ -7,7 +7,7 @@ import com.fusionhub.reciperealm.webservices.dto.RecipeDetailsDto;
 
 public interface RecipeDetailsService {
 
-    RecipeDetailsDto save(RecipeDetailsDto details);
+    RecipeDetailsDto addRecipeDetail(RecipeDetailsDto recipeDetailsDto);
 
     Optional<RecipeDetailsDto> findById(Long id);
 

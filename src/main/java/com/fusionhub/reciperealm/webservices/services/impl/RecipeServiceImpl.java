@@ -15,7 +15,6 @@ import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
 import com.fusionhub.reciperealm.webservices.models.Recipe;
 import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.RecipeRepository;
-import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
 import com.fusionhub.reciperealm.webservices.services.UserService;
 import com.fusionhub.reciperealm.webservices.validation.RecipeValidation;
@@ -39,9 +38,6 @@ public class RecipeServiceImpl implements RecipeService {
     private UserService userService;
 
     @Autowired
-    private RecipeDetailsService recipeDetailsService;
-
-    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -56,13 +52,6 @@ public class RecipeServiceImpl implements RecipeService {
 
         Recipe savedRecipe = recipeRepository.save(recipe);
         CreateRecipeDto savedRecipeDto = createRecipeMapper.convertToCreateRecipeDto(savedRecipe);
-
-        if (recipeDto.getDetails() != null) {
-            recipeDto.getDetails().forEach(detailDto -> {
-                detailDto.setRecipeId(savedRecipe.getId());
-                recipeDetailsService.save(detailDto);
-            });
-        }
 
         return savedRecipeDto;
     }

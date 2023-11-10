@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.fusionhub.reciperealm.webservices.dto.RecipeDetailsDto;
 import com.fusionhub.reciperealm.webservices.mapping.RecipeDetailsMapper;
+import com.fusionhub.reciperealm.webservices.models.Recipe;
+import com.fusionhub.reciperealm.webservices.models.RecipeDetails;
 import com.fusionhub.reciperealm.webservices.repository.RecipeDetailsRepository;
+import com.fusionhub.reciperealm.webservices.repository.RecipeRepository;
 import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
-public class RecipeDetailsServiceImpl implements RecipeDetailsService{
+public class RecipeDetailsServiceImpl implements RecipeDetailsService {
 
     @Autowired
     private RecipeDetailsRepository recipeDetailsRepository;
@@ -20,9 +25,22 @@ public class RecipeDetailsServiceImpl implements RecipeDetailsService{
     @Autowired
     private RecipeDetailsMapper recipeDetailsMapper;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
     @Override
-    public RecipeDetailsDto save(RecipeDetailsDto details) {
-        return recipeDetailsMapper.convertToRecipeDetailsDto(recipeDetailsRepository.save(recipeDetailsMapper.convertToRecipeDetails(details)));
+    public RecipeDetailsDto addRecipeDetail(RecipeDetailsDto recipeDetailsDto) {
+
+        Recipe recipe = recipeRepository.findById(recipeDetailsDto.getRecipeId())
+                .orElseThrow(() -> new EntityNotFoundException("Receta no encontrada"));
+
+        RecipeDetails recipeDetail = recipeDetailsMapper.convertToRecipeDetails(recipeDetailsDto);
+        recipeDetail.setRecipe(recipe);
+
+        RecipeDetails savedDetail = recipeDetailsRepository.save(recipeDetail);
+
+        return recipeDetailsMapper.convertToRecipeDetailsDto(savedDetail);
+
     }
 
     @Override

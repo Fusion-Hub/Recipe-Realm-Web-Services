@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class IngredientsDto {
+    private Long id;
     private String name;
 }

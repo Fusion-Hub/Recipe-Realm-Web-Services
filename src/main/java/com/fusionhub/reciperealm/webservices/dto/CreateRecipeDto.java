@@ -18,6 +18,4 @@ public class CreateRecipeDto {
     private List<String> steps;
     private String videoLink;
     private String imageLink;
-    private Long userId; 
-    private List<RecipeDetailsDto> details; 
 }
