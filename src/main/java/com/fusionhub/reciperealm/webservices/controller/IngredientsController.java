@@ -22,7 +22,6 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/api/v1/ingredients")
-@CrossOrigin(origins = "http://localhost:4200")
 public class IngredientsController {
     
     @Autowired
