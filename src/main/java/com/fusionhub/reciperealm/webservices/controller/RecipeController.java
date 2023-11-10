@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import com.fusionhub.reciperealm.webservices.dto.RecipeDetailsDto;
+import com.fusionhub.reciperealm.webservices.dto.CreateRecipeDto;
 import com.fusionhub.reciperealm.webservices.dto.RecipeDto;
-import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
 
 @RestController
@@ -20,27 +20,19 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    @Autowired
-    private RecipeDetailsService recipeDetailsService;
-
     @PostMapping
-    @Transactional
-    public ResponseEntity<RecipeDto> save(@RequestBody RecipeDto recipeDto) {
-        RecipeDto savedRecipeDto = recipeService.save(recipeDto);
-
-        for(RecipeDetailsDto detail : recipeDto.getDetails()) {
-            detail.setRecipeId(savedRecipeDto.getId());
-            recipeDetailsService.save(detail);
-        }
-
-        return ResponseEntity.ok(savedRecipeDto);
+    public ResponseEntity<CreateRecipeDto> save(@RequestBody CreateRecipeDto recipeDto,
+            @RequestHeader("Authorization") String token) {
+        token = token.replace("Bearer ", "");
+        CreateRecipeDto savedRecipeDto = recipeService.save(recipeDto, token);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedRecipeDto);
     }
 
     @GetMapping("/{id}")
     @Transactional
     public ResponseEntity<RecipeDto> findById(@PathVariable Long id) {
         Optional<RecipeDto> recipe = recipeService.findById(id);
-        if(recipe.isPresent()) {
+        if (recipe.isPresent()) {
             return ResponseEntity.ok(recipe.get());
         } else {
             return ResponseEntity.notFound().build();

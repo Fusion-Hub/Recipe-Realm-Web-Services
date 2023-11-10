@@ -3,11 +3,12 @@ package com.fusionhub.reciperealm.webservices.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.fusionhub.reciperealm.webservices.dto.CreateRecipeDto;
 import com.fusionhub.reciperealm.webservices.dto.RecipeDto;
 
 public interface RecipeService {
     
-    RecipeDto save(RecipeDto recipe);
+    CreateRecipeDto save(CreateRecipeDto recipeDto, String token);
 
     Optional<RecipeDto> findById(Long id);
 

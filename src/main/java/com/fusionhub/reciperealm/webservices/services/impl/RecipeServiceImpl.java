@@ -6,27 +6,65 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fusionhub.reciperealm.webservices.dto.CreateRecipeDto;
 import com.fusionhub.reciperealm.webservices.dto.RecipeDto;
+import com.fusionhub.reciperealm.webservices.dto.UserDto;
+import com.fusionhub.reciperealm.webservices.mapping.CreateRecipeMapper;
 import com.fusionhub.reciperealm.webservices.mapping.RecipeMapper;
+import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
+import com.fusionhub.reciperealm.webservices.models.Recipe;
+import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.RecipeRepository;
+import com.fusionhub.reciperealm.webservices.services.RecipeDetailsService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
+import com.fusionhub.reciperealm.webservices.services.UserService;
 import com.fusionhub.reciperealm.webservices.validation.RecipeValidation;
 
 @Service
-public class RecipeServiceImpl implements RecipeService{
+public class RecipeServiceImpl implements RecipeService {
 
-    @Autowired 
+    @Autowired
     private RecipeRepository recipeRepository;
 
     @Autowired
     private RecipeMapper recipeMapper;
 
     @Autowired
+    private CreateRecipeMapper createRecipeMapper;
+
+    @Autowired
     private RecipeValidation recipeValidation;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RecipeDetailsService recipeDetailsService;
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public RecipeDto save(RecipeDto recipe) { 
-        recipeValidation.validateRecipe(recipe);
-        return recipeMapper.convertToRecipeDto(recipeRepository.save(recipeMapper.convertToRecipe(recipe)));
+    public CreateRecipeDto save(CreateRecipeDto recipeDto, String token) {
+        recipeValidation.validateRecipe(recipeDto);
+
+        UserDto userDto = userService.getLoggedInUserProfile(token);
+        User user = userMapper.convertToUser(userDto);
+
+        Recipe recipe = createRecipeMapper.convertToRecipe(recipeDto);
+        recipe.setUser(user);
+
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        CreateRecipeDto savedRecipeDto = createRecipeMapper.convertToCreateRecipeDto(savedRecipe);
+
+        if (recipeDto.getDetails() != null) {
+            recipeDto.getDetails().forEach(detailDto -> {
+                detailDto.setRecipeId(savedRecipe.getId());
+                recipeDetailsService.save(detailDto);
+            });
+        }
+
+        return savedRecipeDto;
     }
 
     @Override
@@ -53,5 +91,5 @@ public class RecipeServiceImpl implements RecipeService{
     public void deleteById(Long id) {
         recipeRepository.deleteById(id);
     }
-    
+
 }
