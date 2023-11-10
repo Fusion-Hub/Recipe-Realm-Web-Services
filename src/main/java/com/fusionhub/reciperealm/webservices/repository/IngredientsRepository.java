@@ -8,9 +8,11 @@ import com.fusionhub.reciperealm.webservices.models.Ingredients;
 
 
 public interface IngredientsRepository extends JpaRepository<Ingredients, Long>{
-    
-    List<Ingredients> findByNameContainingIgnoreCase(String name);
 
+    Ingredients findByName(String name);
+
+    List<Ingredients> findByNameContainingIgnoreCase(String name);
+    
     List<Ingredients> findByNameIn(List<String> names);
 
     
