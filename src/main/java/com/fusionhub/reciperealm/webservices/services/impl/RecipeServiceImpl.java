@@ -15,6 +15,8 @@ import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
 import com.fusionhub.reciperealm.webservices.models.Recipe;
 import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.RecipeRepository;
+import com.fusionhub.reciperealm.webservices.repository.UserRepository;
+import com.fusionhub.reciperealm.webservices.services.JwtService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
 import com.fusionhub.reciperealm.webservices.services.UserService;
 import com.fusionhub.reciperealm.webservices.validation.RecipeValidation;
@@ -35,17 +37,17 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeValidation recipeValidation;
 
     @Autowired
-    private UserService userService;
+    private JwtService  jwtService;
 
-    @Autowired
-    private UserMapper userMapper;
+     @Autowired
+    private UserRepository userRepository;
 
     @Override
     public CreateRecipeDto save(CreateRecipeDto recipeDto, String token) {
         recipeValidation.validateRecipe(recipeDto);
 
-        UserDto userDto = userService.getLoggedInUserProfile(token);
-        User user = userMapper.convertToUser(userDto);
+        String userEmail = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(userEmail);
 
         Recipe recipe = createRecipeMapper.convertToRecipe(recipeDto);
         recipe.setUser(user);
