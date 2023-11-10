@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CreateRecipeDto {
+    private Long id;
     private String name;
     private String description;
     private String cookTime;
