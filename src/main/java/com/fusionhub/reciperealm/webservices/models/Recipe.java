@@ -36,8 +36,9 @@ public class Recipe {
 
     private String cookTime;
 
-    @ElementCollection
-    private List<String> steps;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "recipe_id")
+    private List<RecipeSteps> steps;
 
     @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
     private String videoLink; 

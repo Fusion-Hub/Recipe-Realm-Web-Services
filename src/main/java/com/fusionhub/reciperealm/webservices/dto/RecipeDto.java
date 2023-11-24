@@ -2,6 +2,8 @@ package com.fusionhub.reciperealm.webservices.dto;
 
 import java.util.List;
 
+import com.fusionhub.reciperealm.webservices.models.RecipeSteps;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +19,7 @@ public class RecipeDto {
     private String description;
     private String cookTime;
     private String ingredients;
-    private List<String> steps;
+    private RecipeSteps steps;
     private String videoLink;
     private String imageLink;
     private UserDto user;
