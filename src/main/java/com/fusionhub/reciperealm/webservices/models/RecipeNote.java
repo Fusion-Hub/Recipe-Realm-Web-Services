@@ -1,11 +1,11 @@
 package com.fusionhub.reciperealm.webservices.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class RecipeNote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
+    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
     private String note;
 
     @OneToOne
