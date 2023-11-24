@@ -8,17 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.fusionhub.reciperealm.webservices.dto.CreateRecipeDto;
 import com.fusionhub.reciperealm.webservices.dto.RecipeDto;
-import com.fusionhub.reciperealm.webservices.dto.UserDto;
 import com.fusionhub.reciperealm.webservices.mapping.CreateRecipeMapper;
 import com.fusionhub.reciperealm.webservices.mapping.RecipeMapper;
-import com.fusionhub.reciperealm.webservices.mapping.UserMapper;
 import com.fusionhub.reciperealm.webservices.models.Recipe;
 import com.fusionhub.reciperealm.webservices.models.User;
 import com.fusionhub.reciperealm.webservices.repository.RecipeRepository;
 import com.fusionhub.reciperealm.webservices.repository.UserRepository;
 import com.fusionhub.reciperealm.webservices.services.JwtService;
 import com.fusionhub.reciperealm.webservices.services.RecipeService;
-import com.fusionhub.reciperealm.webservices.services.UserService;
 import com.fusionhub.reciperealm.webservices.validation.RecipeValidation;
 
 @Service
