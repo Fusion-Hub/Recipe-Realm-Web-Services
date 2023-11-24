@@ -1,5 +1,6 @@
 package com.fusionhub.reciperealm.webservices.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,4 +81,15 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.deleteById(id);
     }
 
+    public List<RecipeDto> findRecipesByAuthenticatedUser(String token) {
+        String userEmail = jwtService.extractUsername(token);
+        User user = userRepository.findByEmail(userEmail);
+
+        if (user != null) {
+            List<Recipe> recipes = recipeRepository.findByUserId(user.getId());
+            return recipeMapper.convertToRecipeDtoList(recipes);
+        } else {
+            return new ArrayList<>();
+        }
+    }
 }
