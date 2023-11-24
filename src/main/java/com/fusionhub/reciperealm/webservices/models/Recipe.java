@@ -31,6 +31,7 @@ public class Recipe {
 
     private String name;
 
+    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
     private String description; 
 
     private String cookTime;
@@ -38,12 +39,10 @@ public class Recipe {
     @ElementCollection
     private List<String> steps;
 
-    @Column(nullable = true)
-    @Lob
+    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
     private String videoLink; 
     
-    @Column(nullable = true)
-    @Lob
+    @Column(nullable = true,columnDefinition = "MEDIUMTEXT")
     private String imageLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
