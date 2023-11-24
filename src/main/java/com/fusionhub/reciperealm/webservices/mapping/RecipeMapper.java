@@ -30,11 +30,14 @@ public class RecipeMapper {
             RecipeNote note = recipeNoteMapper.convertToRecipeNote(request.getNote());
             recipe.setNote(note);
         }
-
-        // Mapeo del campo 'steps'
+        
         if (request.getSteps() != null) {
             List<RecipeSteps> stepsList = request.getSteps().stream()
-                    .map(stepDto -> modelMapper.map(stepDto, RecipeSteps.class))
+                    .map(stepDto -> {
+                        RecipeSteps step = modelMapper.map(stepDto, RecipeSteps.class);
+                        step.setRecipe(recipe);
+                        return step;
+                    })
                     .collect(Collectors.toList());
             recipe.setSteps(stepsList);
         }
