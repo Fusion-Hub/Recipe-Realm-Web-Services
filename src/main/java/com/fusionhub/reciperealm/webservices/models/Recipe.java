@@ -31,12 +31,13 @@ public class Recipe {
 
     private String name;
 
-    @Lob
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description; 
 
     private String cookTime;
 
     @ElementCollection
+    @Column(columnDefinition = "MEDIUMTEXT")
     private List<String> steps;
 
     @Column(nullable = true)
@@ -51,7 +52,7 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Lob
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String ingredients;
 
      @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
