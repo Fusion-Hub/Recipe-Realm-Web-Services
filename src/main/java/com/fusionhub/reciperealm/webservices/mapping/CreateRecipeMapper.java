@@ -14,7 +14,13 @@ public class CreateRecipeMapper {
     private ModelMapper modelMapper;
 
     public Recipe convertToRecipe(CreateRecipeDto request) {
-        return modelMapper.map(request, Recipe.class);
+        Recipe recipe = modelMapper.map(request, Recipe.class);
+        
+        if (recipe.getSteps() != null) {
+            recipe.getSteps().forEach(step -> step.setRecipe(recipe));
+        }
+
+        return recipe;
     }
     
     public CreateRecipeDto convertToCreateRecipeDto(Recipe request) {
