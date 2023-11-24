@@ -16,11 +16,11 @@ public class RecipeDto {
     private String name;
     private String description;
     private String cookTime;
+    private String ingredients;
     private List<String> steps;
     private String videoLink;
     private String imageLink;
     private UserDto user;
-    private List<RecipeDetailsDto> details; 
     private RecipeNoteDto note;
     private List<RecipeRatingDto> ratings;
 }

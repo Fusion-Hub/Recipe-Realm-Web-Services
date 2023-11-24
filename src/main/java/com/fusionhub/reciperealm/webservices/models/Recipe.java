@@ -1,7 +1,6 @@
 package com.fusionhub.reciperealm.webservices.models;
 
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -51,6 +50,9 @@ public class Recipe {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Lob
+    private String ingredients;
 
      @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeDetails> details;
