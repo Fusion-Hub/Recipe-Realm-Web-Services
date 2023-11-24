@@ -64,4 +64,11 @@ public class RecipeController {
         recipeService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/my-recipes")
+    public ResponseEntity<List<RecipeDto>> findRecipesByAuthenticatedUser(@RequestHeader("Authorization") String token) {
+        token = token.replace("Bearer ", "");
+        List<RecipeDto> recipes = recipeService.findRecipesByAuthenticatedUser(token);
+        return ResponseEntity.ok(recipes);
+    }
 }

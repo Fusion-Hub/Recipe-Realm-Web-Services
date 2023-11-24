@@ -20,6 +20,6 @@ public interface RecipeService {
 
     void deleteById(Long id);
 
-
+    public abstract List<RecipeDto> findRecipesByAuthenticatedUser(String token);
 
 }
