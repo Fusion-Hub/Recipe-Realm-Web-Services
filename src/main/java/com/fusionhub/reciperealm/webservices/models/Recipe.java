@@ -31,13 +31,11 @@ public class Recipe {
 
     private String name;
 
-    @Column(columnDefinition = "MEDIUMTEXT")
     private String description; 
 
     private String cookTime;
 
     @ElementCollection
-    @Column(columnDefinition = "MEDIUMTEXT")
     private List<String> steps;
 
     @Column(nullable = true)
