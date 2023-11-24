@@ -17,7 +17,7 @@ public class CreateRecipeDto {
     private String description;
     private String ingredients;
     private String cookTime;
-    private List<String> steps;
+    private List<RecipeStepsDto> steps;
     private String videoLink;
     private String imageLink;
 }
