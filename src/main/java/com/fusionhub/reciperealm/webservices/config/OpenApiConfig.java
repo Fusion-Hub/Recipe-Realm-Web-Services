@@ -15,7 +15,7 @@ public class OpenApiConfig {
     
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().addServersItem(new Server().url("https://localhost:8080/"))
+        return new OpenAPI().addServersItem(new Server().url("https://recipe-real-web-service.onrender.com/"))
             .components(new Components()
                 .addSecuritySchemes("bearerAuth", 
                     new SecurityScheme()
