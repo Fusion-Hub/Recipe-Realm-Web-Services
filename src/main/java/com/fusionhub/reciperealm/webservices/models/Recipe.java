@@ -47,7 +47,7 @@ public class Recipe {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(columnDefinition = "MEDIUMTEXT")
+    @Column(length = 1048576)
     private String ingredients;
 
      @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
