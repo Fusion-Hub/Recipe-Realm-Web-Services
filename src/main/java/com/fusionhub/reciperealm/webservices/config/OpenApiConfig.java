@@ -15,7 +15,7 @@ public class OpenApiConfig {
     
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().addServersItem(new Server().url("https://recipe-realm-web-services-production.up.railway.app/"))
+        return new OpenAPI().addServersItem(new Server().url("https://localhost:8080/"))
             .components(new Components()
                 .addSecuritySchemes("bearerAuth", 
                     new SecurityScheme()
