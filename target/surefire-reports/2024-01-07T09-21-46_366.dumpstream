@@ -1,0 +1,5 @@
+# Created at 2024-01-07T09:21:46.502
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Universidad\App Mobiles\Recipe Realm Web Services\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
