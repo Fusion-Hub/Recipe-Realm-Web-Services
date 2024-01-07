@@ -23,7 +23,7 @@ public class RecipeSteps {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
+    @Column(nullable = true, length = 1048576)
     private String description; 
 
     @ManyToOne

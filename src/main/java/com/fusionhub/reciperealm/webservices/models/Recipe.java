@@ -29,7 +29,7 @@ public class Recipe {
 
     private String name;
 
-    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
+    @Column(nullable = true, length = 1048576)
     private String description; 
 
     private String cookTime;
@@ -37,10 +37,10 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe", orphanRemoval = true)
     private List<RecipeSteps> steps;
 
-    @Column(nullable = true, columnDefinition = "MEDIUMTEXT")
+    @Column(nullable = true, length = 1048576)
     private String videoLink; 
     
-    @Column(nullable = true,columnDefinition = "MEDIUMTEXT")
+    @Column(nullable = true,length = 1048576)
     private String imageLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
